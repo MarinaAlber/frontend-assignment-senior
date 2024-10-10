@@ -8,7 +8,6 @@ import { MESSAGES } from "../constants";
 export const useFetch = <T>(initialUrl: string) => {
   const [data, setData] = useState<T[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setHasError] = useState(false);
   const [error, setError] = useState<string>("");
   let abortFetchRequest: AbortRequestFn = () => {};
   const nextLinkRef = useRef<string | null>(null);
@@ -17,7 +16,6 @@ export const useFetch = <T>(initialUrl: string) => {
   const resetState = () => {
     setIsLoading(true);
     setData(null);
-    setHasError(false);
     setError("");
   };
 
@@ -58,12 +56,12 @@ export const useFetch = <T>(initialUrl: string) => {
         abortFetchRequest();
       }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
     data,
     isLoading,
-    hasError,
     error,
     callRequest: fetchRequest,
     nextLink: nextLinkRef.current,
