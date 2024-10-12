@@ -4,23 +4,28 @@ import Input from "./components/Input";
 import { Theme, ThemeContext } from "./context";
 import { FC, useState } from "react";
 
+import "./styles.scss";
 const Task2: FC = () => {
   const [theme, setTheme] = useState<Theme>("light");
   const [value, setValue] = useState<string>("");
   return (
     <ThemeContext.Provider value={theme}>
-      <div>
-        Task 2
-        <button
-          aria-label="Toggle Theme"
-          role="button"
-          onClick={() =>
-            setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"))
-          }
-        >
-          Toggle Theme
-        </button>
-        <div>
+      <div className="task2">
+        <div className="task2__header">
+          <h5> Current Theme: {theme}</h5>
+          <button
+            aria-label="Toggle Theme"
+            role="button"
+            onClick={() =>
+              setTheme((prevTheme) =>
+                prevTheme === "light" ? "dark" : "light"
+              )
+            }
+          >
+            Toggle Theme
+          </button>
+        </div>
+        <div className="task2__component">
           <h4>Buttons</h4>
           <Button
             onClick={() => {
@@ -40,7 +45,7 @@ const Task2: FC = () => {
             secondary Test Button
           </Button>
         </div>
-        <div>
+        <div className="task2__component">
           <h4>Card</h4>
 
           <Card padding="md" margin="sm">
@@ -48,15 +53,15 @@ const Task2: FC = () => {
             this is the card content
           </Card>
         </div>
-        <div>
+        <div className="task2__component">
           <h4>Input</h4>
           <Input
             onChange={(value) => setValue(value as string)}
             value={value}
             padding="sm"
-            margin="sm"
+            margin="xs"
           />
-          value :{value}
+          <span>value: {value}</span>
         </div>
       </div>
     </ThemeContext.Provider>
