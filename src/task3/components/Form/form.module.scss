@@ -79,24 +79,4 @@
       }
   }
 
-  .summary {
-    background-color: $light-grey;
-    padding: 1rem;
-    margin: auto;
-    border-radius: 5px;
-    color: $secondary-color;
-    &__item {
-      display: flex;
-      align-items: center;
-      gap:0.625rem;
-      font-size: 0.875rem;
-      padding: 0.25rem 1rem;
-    }
-    &__label {
-      min-width: 10%;
-      margin-inline-end: 0.25rem;
-      font-weight: 600;
-      text-transform: capitalize;
-    }
-  }
 }

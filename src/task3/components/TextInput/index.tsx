@@ -1,26 +1,34 @@
-import { TErrors, TFormValues } from "src/task3/types";
+import { TFormValues } from "src/task3/types";
 
 import classes from "./input.module.scss";
-import { FC, HTMLInputTypeAttribute } from "react";
+import { ChangeEvent, FC, HTMLInputTypeAttribute } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { inputChange } from "../../store/slice";
+import { RootState } from "../../store/store";
 
 type TTextInput = {
   name: keyof TFormValues;
   placeholder: string;
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  errors: TErrors;
-  formData: TFormValues;
   type?: HTMLInputTypeAttribute;
   required?: boolean;
 };
+
 const TextInput: FC<TTextInput> = ({
   name,
   placeholder,
-  handleInputChange,
-  errors,
-  formData,
   type = "text",
   required = false,
 }) => {
+  const dispatch = useDispatch();
+
+  const { values: formData, errors } = useSelector(
+    (state: RootState) => state.form
+  );
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    dispatch(inputChange({ name: name as keyof TFormValues, value }));
+  };
+
   return (
     <div className={classes.group}>
       <label
@@ -34,7 +42,7 @@ const TextInput: FC<TTextInput> = ({
         {name}
       </label>
       <input
-        aria-required ={required}
+        aria-required={required}
         placeholder={placeholder}
         type={type}
         id={name}
