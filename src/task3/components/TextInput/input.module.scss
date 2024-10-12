@@ -1,0 +1,43 @@
+@import "../../variables";
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: calc(100% - 1rem);
+  margin-bottom: 0.625rem;
+
+  &__error {
+    color: $red;
+    font-size: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.625rem;
+  }
+
+  &__label {
+    color: $secondary-color;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: capitalize;
+  }
+  &__required {
+    &::after {
+      content: "*";
+      color: $red;
+    }
+  }
+  &__input {
+    padding: 0.625rem;
+    border: 1px solid $grey;
+    border-radius: 5px;
+    &:focus {
+      outline: 1px solid $primary-color;
+    }
+    &_error {
+      border-color: $red;
+      &:focus {
+        outline: 1px solid $red;
+      }
+    }
+  }
+}
