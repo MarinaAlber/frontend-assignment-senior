@@ -1,10 +1,11 @@
 import { FC } from "react";
 
-import { store } from "./store/store";
+import { setupStore } from "./store/store";
 import { Provider } from "react-redux";
 import UserForm from "./components/Form/form";
 
 const Task3: FC = () => {
+  const store = setupStore();
   return (
     <Provider store={store}>
       <UserForm />
