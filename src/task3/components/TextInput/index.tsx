@@ -21,9 +21,11 @@ const TextInput: FC<TTextInput> = ({
 }) => {
   const dispatch = useDispatch();
 
-  const { values: formData, errors } = useSelector(
-    (state: RootState) => state.form
-  );
+  const {
+    isLoading,
+    values: formData,
+    errors,
+  } = useSelector((state: RootState) => state.form);
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     dispatch(inputChange({ name: name as keyof TFormValues, value }));
@@ -49,6 +51,8 @@ const TextInput: FC<TTextInput> = ({
         name={name}
         value={formData[name]}
         onChange={handleInputChange}
+        disabled={isLoading}
+        aria-disabled={isLoading}
         className={`${classes.group__input} ${
           errors[name] ? classes.group__input_error : ""
         }`}
