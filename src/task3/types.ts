@@ -5,7 +5,6 @@ export type TFormValues = {
   email: string;
   phone: string;
   age: number;
-  role?: TRole;
   job?: string;
   school?: string;
 };
