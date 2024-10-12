@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { TErrors, TFormValues } from "../types";
 
-type TFormSlice = {
+export type TFormSlice = {
   values: TFormValues;
   isLoading: boolean;
   errors: TErrors;
