@@ -5,10 +5,11 @@ import { MESSAGES } from "./constants";
 import { useFetch } from "./hooks/useFetch";
 import { getUsersListUrl } from "./services/userAPI";
 
-
 import "./index.scss";
 
 const Task1: FC = () => {
+  // decided to use github 'users & search' apis to fetch get data,
+  // not the locally mocked data because it was mentioned in this file.
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const url = getUsersListUrl(searchQuery, pageNumber);
@@ -53,12 +54,17 @@ const Task1: FC = () => {
   };
 
   const renderInputSearch = () => {
+    const isDisabled = isLoading || !!error;
     return (
       <input
+        role="search"
+        aria-label="Search"
+        aria-placeholder="Search"
+        aria-disabled={isDisabled}
+        disabled={isDisabled}
         type="text"
         placeholder="Search..."
         onChange={handleSearch}
-        disabled={isLoading || !!error}
       />
     );
   };
@@ -80,10 +86,22 @@ const Task1: FC = () => {
       return (
         <div className="dashboard__pagination">
           {nextLink && (
-            <button onClick={() => callRequest(nextLink)}>Next</button>
+            <button
+              aria-label="Next"
+              role="button"
+              onClick={() => callRequest(nextLink)}
+            >
+              Next
+            </button>
           )}
           {prevLink && (
-            <button onClick={() => callRequest(prevLink)}>Prev</button>
+            <button
+              aria-label="Prev"
+              role="button"
+              onClick={() => callRequest(prevLink)}
+            >
+              Prev
+            </button>
           )}
         </div>
       );
@@ -94,7 +112,7 @@ const Task1: FC = () => {
       {renderInputSearch()}
       {renderLoading()}
       {renderError()}
-      <ul>{renderUsers()}</ul>
+      <ul data-testid="users-list">{renderUsers()}</ul>
       {renderPagination()}
     </div>
   );
