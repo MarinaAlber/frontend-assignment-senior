@@ -42,7 +42,7 @@ const Task2: FC = () => {
             color="secondary"
             margin="xs"
           >
-            secondary Test Button
+            Secondary Test Button
           </Button>
         </div>
         <div className="task2__component">

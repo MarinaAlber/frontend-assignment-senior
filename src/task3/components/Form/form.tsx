@@ -23,7 +23,7 @@ const UserForm: FC = () => {
     errors,
   } = useSelector((state: RootState) => state.form);
   const dispatch = useDispatch();
-  
+
   const validate = () => {
     let newErrors: TErrors = {};
     if (active === 1) {
@@ -116,7 +116,7 @@ const UserForm: FC = () => {
 
   return (
     <section className={classes.wrapper}>
-      <form className={classes.form} onSubmit={handleSubmit}>
+      <form className={classes.form} onSubmit={handleSubmit} role="form">
         <h4>Step {active}</h4>
         <div className={classes.step}>{renderForm()}</div>
 
