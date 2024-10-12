@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @import "../../variables";
 
 .wrapper {
@@ -40,11 +42,11 @@
     padding: 0.625rem 1.25rem;
     cursor: pointer;
     &:hover {
-      background-color: lighten($primary-color, 10%);
+      background-color: color.adjust($primary-color, $lightness: 10%);
     }
     &:focus {
-      outline: none;
-      background-color: darken($primary-color, 10%);
+      outline: 1px solid $primary-color;
+      background-color: color.adjust($primary-color, $lightness: -10%);
     }
     &:disabled {
       background-color: $light-grey;
@@ -64,10 +66,11 @@
     padding: 0.625rem 1.25rem;
     cursor: pointer;
     &:hover {
-      background-color: darken($light-grey, 10%);
+      background-color: color.adjust($light-grey, $lightness: -10%);
     }
     &:focus {
-      outline: none;
+      outline: 1px solid $grey;
+      background-color: color.adjust($light-grey, $lightness: 10%);
     }
     &:disabled {
         background-color: $light-grey;

@@ -81,8 +81,8 @@ const UserForm: FC = () => {
             type="button"
             className={classes.button__secondary}
             onClick={() => handleStepChange(active - 1)}
-            disabled={isDisabled}
-            aria-disabled={isDisabled}
+            disabled={isLoading}
+            aria-disabled={isLoading}
           >
             Back
           </button>
