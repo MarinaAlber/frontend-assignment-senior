@@ -30,6 +30,14 @@
     padding: 0.625rem;
     border: 1px solid $grey;
     border-radius: 5px;
+    &:disabled {
+      background-color: $light-grey;
+      color: $grey;
+      cursor: not-allowed;
+    }
+    &::placeholder {
+      color: $grey;
+    }
     &:focus {
       outline: 1px solid $primary-color;
     }
